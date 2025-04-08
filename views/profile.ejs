@@ -1,0 +1,48 @@
+<%- include('partials/header', { title: 'Profile', bgImage: '/images/profile.webp' }) %>
+<section class="py-12 bg-black bg-opacity-70">
+  <h1 class="text-4xl font-bold mb-8 text-center">Profile</h1>
+  <div class="p-8 rounded-lg shadow-lg max-w-3xl mx-auto">
+    <form action="/profile" method="POST">
+      <div class="mb-4">
+        <label class="block text-gray-200 mb-2" for="name">Name</label>
+        <input type="text" name="name" id="name" value="<%= user.username %>" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-200 mb-2" for="bio">Bio</label>
+        <textarea name="bio" id="bio" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"><%= user.bio || "" %></textarea>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-200 mb-2" for="age">Age</label>
+        <input type="number" name="age" id="age" value="<%= user.age || "" %>" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-200 mb-2" for="gender">Gender</label>
+        <select name="gender" id="gender" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black">
+          <option value="" <%= !user.gender ? "selected" : "" %>>Select</option>
+          <option value="Male" <%= user.gender === "Male" ? "selected" : "" %>>Male</option>
+          <option value="Female" <%= user.gender === "Female" ? "selected" : "" %>>Female</option>
+          <option value="Other" <%= user.gender === "Other" ? "selected" : "" %>>Other</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-200 mb-2" for="height">Height (cm)</label>
+        <input type="number" name="height" id="height" value="<%= user.height || "" %>" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-200 mb-2" for="weight">Weight (kg)</label>
+        <input type="number" name="weight" id="weight" value="<%= user.weight || "" %>" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-200 mb-2" for="email">Email</label>
+        <input type="email" name="email" id="email" value="<%= user.email %>" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black" readonly>
+      </div>
+      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded transition">Update Profile</button>
+    </form>
+    <div class="mt-8">
+      <h2 class="text-2xl font-semibold text-gray-100 mb-4">Stats</h2>
+      <p class="text-gray-200">Total Challenges Joined: TBD</p>
+      <p class="text-gray-200">Best Streak: TBD</p>
+    </div>
+  </div>
+</section>
+<%- include('partials/footer') %>

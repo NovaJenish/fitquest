@@ -1,0 +1,44 @@
+<%- include('partials/header', { title: 'Chat', bgImage: '/images/chat.webp' }) %>
+<div class="flex h-screen bg-black bg-opacity-70">
+  <!-- Chat Area (flex column) -->
+  <div class="flex flex-col flex-1">
+    <!-- Chat Messages (with Clear Chat button at top) -->
+    <div class="flex-1 overflow-y-auto p-4">
+      <div class="flex justify-end mb-4">
+        <form action="/chat/clear" method="POST">
+          <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded transition">Clear Chat</button>
+        </form>
+      </div>
+      <div class="space-y-4">
+        <% messages.forEach(msg => { %>
+          <div class="p-4 rounded shadow">
+            <p class="font-semibold text-gray-100">
+              <%= msg.username %>
+              <span class="text-gray-300 text-sm"><%= msg.created_at %></span>
+            </p>
+            <p class="text-gray-200"><%= msg.message %></p>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+    <!-- Chat Input Area (pinned at bottom) -->
+    <div class="p-4">
+      <form action="/chat" method="POST">
+        <div class="flex">
+          <input type="text" name="message" placeholder="Type your message..." class="flex-1 p-3 border rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-r transition">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Online Users Panel (fixed width on right) -->
+  <aside class="w-1/5 p-4 overflow-y-auto border-l border-gray-700">
+    <h2 class="font-bold text-gray-100 mb-4">Online Users</h2>
+    <ul>
+      <% onlineUsers.forEach(user => { %>
+        <li class="mb-2 text-gray-200"><%= user.username %></li>
+      <% }); %>
+    </ul>
+  </aside>
+</div>
+<%- include('partials/footer') %>

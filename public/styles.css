@@ -1,0 +1,22 @@
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+  
+body {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+  
+input, button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+}
+.error {
+    color: red;
+}

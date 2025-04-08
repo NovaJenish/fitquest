@@ -1,0 +1,27 @@
+<%- include('partials/header', { title: 'Rewards', bgImage: '/images/rewards.webp' }) %>
+<section class="py-12 bg-black bg-opacity-70">
+  <h1 class="text-4xl font-bold mb-8 text-center">Rewards</h1>
+  <div class="p-6 rounded-lg shadow-lg mb-8 max-w-3xl mx-auto">
+    <h2 class="text-2xl font-semibold text-gray-100">Your Points: <%= points %></h2>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+    <% rewards.forEach(reward => { %>
+      <div class="p-6 rounded-lg shadow-lg text-center">
+        <img src="<%= reward.id === 1 ? '/images/img1.webp' : reward.id === 2 ? '/images/img2.webp' : reward.image %>" alt="<%= reward.name %>" class="mx-auto mb-4 w-16 h-16">
+        <p class="text-xl font-semibold text-gray-100 mb-2"><%= reward.name %></p>
+        <p class="text-gray-200 mb-4"><%= reward.description %></p>
+        <% if (earned.includes(reward.id)) { %>
+          <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded transition" disabled>Earned</button>
+        <% } else if (points >= reward.points_required) { %>
+          <form action="/rewards/claim" method="POST">
+            <input type="hidden" name="rewardId" value="<%= reward.id %>">
+            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded transition">Claim Reward</button>
+          </form>
+        <% } else { %>
+          <button class="w-full bg-gray-500 text-white py-2 rounded" disabled>Not Eligible</button>
+        <% } %>
+      </div>
+    <% }); %>
+  </div>
+</section>
+<%- include('partials/footer') %>
