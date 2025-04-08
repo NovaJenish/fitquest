@@ -4,7 +4,7 @@ FitQuest is a gamified fitness and wellness platform designed to encourage users
 
 Setup Instructions
 Clone this repository:
-git clone https://github.com/NovaJenish/FitQuest-Gamified-Fitness.git
+git clone https://github.com/NovaJenish/fitquest.git
 Navigate to project directory: cd New cd fitquest
 Install dependencies: npm install
 To run the project:
